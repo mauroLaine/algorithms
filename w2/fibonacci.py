@@ -16,7 +16,27 @@ def fib_list(n):
     return number_list[n]
 
 
+def fib_mod(n, m):
+    pisano, previous, current = 0, 0, 0
+    for i in range(2, (m * m) + 1):
+        previous = current
+        fnP = fib_list(i)
+        current = fnP % m
+        # print('f(' + str(i) + '): ' + str(fnP) + ' | ' + str(previous) + ', ' + str(current))
+        if i > 2 and previous == 0 and current == 1:
+            pisano = i - 1
+            break
+    nP = n % pisano
+    return fib_list(nP) % m
+
+
 if __name__ == '__main__':
-    n = int(input())
-    print(calc_fib(n))
-    print(fib_list(n))
+    # Fibonacci number
+    # n = int(input())
+    # print(calc_fib(n))
+    # print(fib_list(n))
+
+    # Fibonacci mod
+    input = input()
+    n, m = map(int, input.split())
+    print(fib_mod(n, m))
